@@ -12,11 +12,30 @@
 
 #include "../includes/lem_in.h"
 
-t_link *new_link(void)
+void copy(char *str, t_link *link)
+{
+  int i;
+  int len;
+
+  i = 0;
+  len = ft_strlen(str);
+  link->name = (char*)ft_memalloc(sizeof(char) * len + 2);
+  while (str[i] != ' ' && str[i] != '-' && i < len)
+  {
+    // printf("copying this -> %c\n", str[i]);
+    link->name[i] = str[i];
+    i++;
+  }
+}
+
+t_link *new_link(char *this)
 {
   t_link *link;
 
   link = (t_link*)ft_memalloc(sizeof(t_link));
+  copy(this, link);
+  link->next = NULL;
+  link->prev = NULL;
   return (link);
 }
 
@@ -33,10 +52,9 @@ void  init_map(t_colony *colony)
 t_colony *new_colony(void)
 {
   t_colony *new;
-  // char *this;
 
   new = (t_colony*)ft_memalloc(sizeof(t_colony));
-  // if (this)
-    // free(this);
+  new->start = -1;
+  new->end = -1;
   return (new);
 }

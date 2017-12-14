@@ -20,6 +20,7 @@
 
 typedef struct s_link {
   int key;
+  char *name;
   struct s_link *next;
   struct s_link *prev;
 }              t_link;
@@ -30,6 +31,7 @@ typedef struct s_map {
   int end;
   int occ;
   int score;
+  int visited;
   int x;
   int y;
   int key;
@@ -41,15 +43,18 @@ typedef struct s_map {
 
 typedef struct s_colony {
   int num_ants;
+  int start;
+  int end;
   t_map **map;
 }              t_colony;
 
-void ants_go(t_colony *colony);
+int ants_go(t_colony *colony);
 void	expletive(char *loc);
 int hash(char *str);
 void  init_map(t_colony *colony);
+void lock(int key, t_colony *colony, char *this);
 t_colony *new_colony(void);
-t_link *new_link(void);
+t_link *new_link(char *this);
 int parse(t_colony *colony, int fd);
 
 #endif

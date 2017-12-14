@@ -12,6 +12,23 @@
 
 #include "../includes/lem_in.h"
 
+void lock(int key, t_colony *colony, char *this)
+{
+  if (!colony->map[key]->link)
+  {
+    colony->map[key]->link = new_link(this);
+    return ;
+  }
+  while (colony->map[key]->link->next)
+    colony->map[key]->link = colony->map[key]->link->next;
+  if (!colony->map[key]->link->next)
+  {
+    colony->map[key]->link->next = new_link(this);
+    colony->map[key]->link->next->prev =
+    colony->map[key]->link;
+  }
+}
+
 int hash(char *str)
 {
   size_t h;

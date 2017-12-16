@@ -22,7 +22,6 @@ void copy(char *str, t_link *link)
   link->name = (char*)ft_memalloc(sizeof(char) * len + 2);
   while (str[i] != ' ' && str[i] != '-' && i < len)
   {
-    // printf("copying this -> %c\n", str[i]);
     link->name[i] = str[i];
     i++;
   }
@@ -35,7 +34,7 @@ t_link *new_link(char *this)
   link = (t_link*)ft_memalloc(sizeof(t_link));
   copy(this, link);
   link->next = NULL;
-  link->prev = NULL;
+  // link->prev = NULL;
   return (link);
 }
 

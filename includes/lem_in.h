@@ -16,11 +16,13 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "../libft/libft.h"
 
 typedef struct s_link {
   int key;
   char *name;
+  int visited;
   struct s_link *next;
   struct s_link *prev;
 }              t_link;
@@ -36,6 +38,7 @@ typedef struct s_map {
   int y;
   int key;
   char *name;
+  int distance;
   struct s_link *link;
   struct s_map *next;
   struct s_map *prev;

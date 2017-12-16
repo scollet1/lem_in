@@ -19,6 +19,7 @@ int main(void)
   colony = new_colony();
   if (parse(colony, 0) < 0)
     expletive("Bad file\n");
-  ants_go(colony);
+  if (ants_go(colony) < 0)
+    expletive("ants_go()\n");
   return (0);
 }

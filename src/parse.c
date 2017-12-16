@@ -23,23 +23,31 @@ void parse_links(t_colony *colony, char *this)
   int key2;
 
   key1 = hash(this);
-  // printf("returned hash 1 to parse_links() -> %d\n", key1);
-  lock(key1, colony, this);
   s = ft_strchr(this, '-');
-  this = ++s;
-  key2 = hash(this);
-  // printf("returned hash 2 to parse_links() -> %d\n", key2);
-  // lock(key1, colony);
+  ++s;
+  key2 = hash(s);
   lock(key2, colony, this);
-
-  // printf("after checking links\n");
+  lock(key1, colony, s);
+  // printf("------break------\n");
+  // if (!colony->map[key1]->link)
+    // printf("ok key 1\n");
+  // if (!colony->map[key2]->link)
+    // printf("ok key 2\n");
+  // printf("key -> %d - %s\n", colony->start, colony->map[colony->start]->link->name);
+  // printf("%s - %s\n", colony->map[key1]->link->name, colony->map[key2]->link->name);
   colony->map[key1]->link->key = key2;
   colony->map[key2]->link->key = key1;
   while (colony->map[key1]->link->prev)
     colony->map[key1]->link = colony->map[key1]->link->prev;
   while (colony->map[key2]->link->prev)
     colony->map[key2]->link = colony->map[key2]->link->prev;
-  // printf("left parse_links()\n");
+  // printf("%d : %s <-> %d : %s\n",
+  // key1, colony->map[key1]->link->name,
+  // key2, colony->map[key2]->link->name);
+  // if (!colony->map[key1]->link)
+    // printf("ok key 1\n");
+  // if (!colony->map[key2]->link)
+    // printf("ok key 2\n");
 }
 
 void parse_coords(t_colony *colony, char *this, int place)
@@ -48,13 +56,9 @@ void parse_coords(t_colony *colony, char *this, int place)
   char *s;
 
   key = hash(this);
-  // printf("returned hash to parse_coords() -> %d\n", key);
   if (colony->map[key]->alive)
-  {
-    printf("collision detected\n");
     while (colony->map[key]->next)
       colony->map[key] = colony->map[key]->next;
-  }
   colony->map[key]->alive = 1;
   if (place == 1)
   {
@@ -73,11 +77,9 @@ void parse_coords(t_colony *colony, char *this, int place)
   ft_strlen(this) - ft_strlen(ft_strchr(this, ' ')));
   s = ft_strchr(this, ' ');
   colony->map[key]->x = ft_atoi(s++);
-  // printf("key x coord -> %d\n", colony->map[key]->x);
   while (ft_isdigit(*s++))
     ;
   colony->map[key]->y = ft_atoi(s);
-  // printf("key y coord -> %d\n", colony->map[key]->y);
   if (this)
     free(this);
 }

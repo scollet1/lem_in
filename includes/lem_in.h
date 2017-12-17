@@ -29,7 +29,6 @@ typedef struct s_link {
 
 typedef struct s_map {
   int start;
-  int alive;
   int end;
   int occ;
   int score;
@@ -47,6 +46,7 @@ typedef struct s_map {
 typedef struct s_colony {
   int num_ants;
   int start;
+  int depth;
   int end;
   t_map **map;
 }              t_colony;

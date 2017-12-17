@@ -34,7 +34,7 @@ t_link *new_link(char *this)
   link = (t_link*)ft_memalloc(sizeof(t_link));
   copy(this, link);
   link->next = NULL;
-  // link->prev = NULL;
+  link->prev = NULL;
   return (link);
 }
 

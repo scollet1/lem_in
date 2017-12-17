@@ -56,10 +56,10 @@ void parse_coords(t_colony *colony, char *this, int place)
   char *s;
 
   key = hash(this);
-  if (colony->map[key]->alive)
-    while (colony->map[key]->next)
-      colony->map[key] = colony->map[key]->next;
-  colony->map[key]->alive = 1;
+  // if (colony->map[key]->alive)
+    // while (colony->map[key]->next)
+      // colony->map[key] = colony->map[key]->next;
+  // colony->map[key]->alive = 1;
   if (place == 1)
   {
     colony->start = key;

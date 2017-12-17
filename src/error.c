@@ -15,6 +15,6 @@
 void	expletive(char *loc)
 {
 	perror("Something happened...\nIt was bad.");
-	perror(loc);
+	ft_putstr(loc);
 	exit(-1);
 }

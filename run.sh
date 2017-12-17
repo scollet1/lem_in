@@ -1,2 +1,2 @@
 clear
-make re && ./lem_in < maps/cobmap
+make re && ./lem_in < maps/hardmap

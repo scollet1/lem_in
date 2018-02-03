@@ -1,2 +1,2 @@
 # lem_in
-yep
+A project which teaches graph theory and unordered graph traversal.
